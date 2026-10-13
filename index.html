@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CreatorFlow MVP</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand-wrap">
+        <div class="brand-mark">CF</div>
+        <div>
+          <h1>CreatorFlow</h1>
+        </div>
+      </div>
+      <nav class="topnav">
+        <button class="nav-link active" data-page="landing">Home</button>
+        <button class="nav-link" data-page="dashboard">Dashboard</button>
+        <button class="nav-link" data-page="content">Content</button>
+        <button class="nav-link" data-page="calendar">Calendar</button>
+        <button class="nav-link" data-page="analytics">Analytics</button>
+        <button class="nav-link" data-page="profile">Profile</button>
+      </nav>
+      <div class="auth-actions">
+        <button id="show-login" class="ghost-btn">Log in</button>
+        <button id="show-register" class="primary-btn">Sign up</button>
+        <button id="logout-btn" class="danger-btn hidden">Log out</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="landing-view" class="view active">
+        <div class="hero">
+          <div>
+            <span class="eyebrow">MVP demo</span>
+            <h2>Plan content before it goes live.</h2>
+            <p>
+              CreatorFlow helps creators store ideas, draft captions, schedule posts, and review a
+              simple dashboard before publishing anything.
+            </p>
+            <div class="cta-row">
+              <button id="hero-signup" class="primary-btn">Create account</button>
+              <button id="hero-login" class="secondary-btn">Log in</button>
+            </div>
+          </div>
+          <div class="hero-card">
+            <h3>Demo workflow</h3>
+            <ul>
+              <li>Save a content idea</li>
+              <li>Assign platform and status</li>
+              <li>Schedule a date/time</li>
+              <li>Review counts and sample analytics</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="auth-view" class="view hidden">
+        <div class="auth-card">
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="login">Log in</button>
+            <button class="tab-btn" data-tab="register">Sign up</button>
+          </div>
+
+          <form id="login-form" class="auth-form active">
+            <h3>Welcome back</h3>
+            <label>
+              Email
+              <input type="email" id="login-email" required />
+            </label>
+            <label>
+              Password
+              <input type="password" id="login-password" required />
+            </label>
+            <button type="submit" class="primary-btn full-width">Log in</button>
+          </form>
+
+          <form id="register-form" class="auth-form hidden">
+            <h3>Create your account</h3>
+            <label>
+              Name
+              <input type="text" id="register-name" required />
+            </label>
+            <label>
+              Email
+              <input type="email" id="register-email" required />
+            </label>
+            <label>
+              Password
+              <input type="password" id="register-password" required />
+            </label>
+            <button type="submit" class="primary-btn full-width">Create account</button>
+          </form>
+
+          <div id="auth-message" class="message-box hidden"></div>
+        </div>
+      </section>
+
+      <section id="app-view" class="view hidden">
+        <aside class="sidebar">
+          <button class="sidebar-link active" data-page="dashboard">Dashboard</button>
+          <button class="sidebar-link" data-page="content">Content</button>
+          <button class="sidebar-link" data-page="calendar">Calendar</button>
+          <button class="sidebar-link" data-page="analytics">Analytics</button>
+          <button class="sidebar-link" data-page="profile">Profile</button>
+        </aside>
+
+        <div class="content-panel">
+          <div id="dashboard-page" class="page active">
+            <h2>Dashboard</h2>
+            <div class="cards">
+              <div class="stat-card">
+                <span>Total content</span>
+                <strong id="total-count">0</strong>
+              </div>
+              <div class="stat-card">
+                <span>Drafts</span>
+                <strong id="draft-count">0</strong>
+              </div>
+              <div class="stat-card">
+                <span>Scheduled</span>
+                <strong id="scheduled-count">0</strong>
+              </div>
+              <div class="stat-card">
+                <span>Published demo</span>
+                <strong id="published-count">0</strong>
+              </div>
+            </div>
+            <div class="panel-box">
+              <h3>Recent content</h3>
+              <div id="recent-posts" class="list-box"></div>
+            </div>
+          </div>
+
+          <div id="content-page" class="page hidden">
+            <div class="page-header">
+              <h2>Content</h2>
+              <button id="new-post-btn" class="primary-btn">New content</button>
+            </div>
+            <form id="post-form" class="panel-box">
+              <input type="hidden" id="post-id" />
+              <div class="two-col">
+                <label>
+                  Title
+                  <input type="text" id="post-title" required />
+                </label>
+                <label>
+                  Platform
+                  <select id="post-platform" required>
+                    <option value="YouTube">YouTube</option>
+                    <option value="Instagram">Instagram</option>
+                    <option value="LinkedIn">LinkedIn</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </label>
+              </div>
+              <label>
+                Caption / body
+                <textarea id="post-body" rows="4"></textarea>
+              </label>
+              <div class="two-col">
+                <label>
+                  Status
+                  <select id="post-status">
+                    <option value="Idea">Idea</option>
+                    <option value="Draft">Draft</option>
+                    <option value="Ready">Ready</option>
+                    <option value="Scheduled">Scheduled</option>
+                    <option value="Published (demo)">Published (demo)</option>
+                    <option value="Cancelled">Cancelled</option>
+                  </select>
+                </label>
+                <label>
+                  Planned date/time
+                  <input type="datetime-local" id="post-date" />
+                </label>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="primary-btn">Save</button>
+                <button type="button" id="cancel-post-btn" class="ghost-btn">Clear</button>
+              </div>
+            </form>
+            <div id="content-list" class="list-box"></div>
+          </div>
+
+          <div id="calendar-page" class="page hidden">
+            <h2>Calendar / Schedule</h2>
+            <div id="calendar-list" class="calendar-wrapper"></div>
+          </div>
+
+          <div id="analytics-page" class="page hidden">
+            <h2>Analytics demo</h2>
+            <div class="demo-banner">Demo data</div>
+            <div class="cards chart-cards">
+              <div class="stat-card">
+                <span>Total posts</span>
+                <strong id="analytics-total">0</strong>
+              </div>
+              <div class="stat-card">
+                <span>Scheduled</span>
+                <strong id="analytics-scheduled">0</strong>
+              </div>
+              <div class="stat-card">
+                <span>Published demo</span>
+                <strong id="analytics-published">0</strong>
+              </div>
+            </div>
+            <div class="panel-box chart-box">
+              <h3>Sample content mix</h3>
+              <div id="chart-bars" class="chart-bars"></div>
+            </div>
+          </div>
+
+          <div id="profile-page" class="page hidden">
+            <h2>Profile / Settings</h2>
+            <div class="panel-box profile-box">
+              <label>
+                Name
+                <input type="text" id="profile-name" />
+              </label>
+              <label>
+                Email
+                <input type="email" id="profile-email" />
+              </label>
+              <div class="form-actions">
+                <button id="save-profile-btn" class="primary-btn">Save profile</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
